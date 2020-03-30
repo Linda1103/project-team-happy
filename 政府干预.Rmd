@@ -1,0 +1,42 @@
+---
+title: 宋学坤SIR软件包使用及政府干预疫情研究
+author: 武碧璇 张妍 祁凡 屈亚然 丁晨东
+date: 2020-03-27
+---
+
+
+
+
+## 研究目的 
+
+简单介绍研究题目+重要性
+
+---
+
+## 时间表
+
+插入表格：简单表和换行表均可
+
+
+## 数据及软件使用
+
+使用数据来源：狗熊会 北京 1.30-3.26  
+软件使用情况：多张frame
+
+## 当前结果
+
+简述+图表
+
+
+
+
+
+
+```{r conv2, echo=TRUE, eval=FALSE}
+rmarkdown::render("slides.Rmd", output_file="handout.html", 
+  output_format="html_document", encoding="UTF-8")
+#生成HTML格式
+```
+
+
+
