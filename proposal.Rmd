@@ -19,7 +19,27 @@ abstract: |
 # 研究目的及重要性
 
 # 计划表
-
+<style type="text/css">
+.tg  {border-collapse:collapse;border-spacing:0;}
+.tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}
+.tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}
+.tg .tg-73a0{font-size:12px;border-color:inherit;text-align:left;vertical-align:top}
+.tg .tg-i21v{font-size:12px;font-family:Arial, Helvetica, sans-serif !important;;border-color:inherit;text-align:left;vertical-align:top}
+</style>
+<table class="tg">
+  <tr>
+    <th class="tg-73a0" colspan="5">Team happy小组工作计划</th>
+  </tr>
+  <tr>
+    <td class="tg-i21v" colspan="5">1.小组创建及主题确定<br>（1）3月17号小组成立，确定了主题以及汇报时间。<br>（2）主题定为细化政府干预SIR模型疫情预测</td>
+  </tr>
+  <tr>
+    <td class="tg-73a0" colspan="5">2.确定讨论时间<br>（1）3月28号 进行小组第一次讨论，细化主题研究内容，明确分工，确定Topic Presentation的基本框架。<br>（2）4月2号 准备好Markdown文件<br>（3）4月24号 进行第二次讨论，考察个人工作进行情况，要求完成项目的一半。并讨论具体细节<br>（4）5月7号&nbsp;&nbsp;准备好第二天演讲所要展示的文件，并完成视频录制。</td>
+  </tr>
+  <tr>
+    <td class="tg-73a0" colspan="5">3.参考文献<br>《大数据驱动下的新冠肺炎疾控》--黄森忠团队<br>《An epidemiologial forecast model and software assessing interventions on COVID-19 epidemic in China》--宋学坤</td>
+  </tr>
+</table>
 # 研究数据
 
 本次研究数据使用狗熊会3月26日公布的[中国全部省份及重点城市疫情时序数据](https://mp.weixin.qq.com/s/w4t7htltf6XzZEgQrxVLiQ)中，北京市1月30日至3月36日的疫情数据。数据涵盖了确诊人数、治愈人数、死亡人数及境外输入数据。
