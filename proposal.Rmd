@@ -1,0 +1,59 @@
+---
+title: "宋学坤SIR软件包使用及政府干预疫情研究"
+author: "武碧璇 张妍 祁凡 屈亚然 丁晨东"
+date: '2020-03-27'
+output:
+  html_document:
+    df_print: paged
+  pdf_document:
+    includes:
+      in_header: preamble.tex
+    number_sections: yes
+fontsize: 12pt
+documentclass: article
+papersize: a5
+abstract: |
+ 使用宋老师SIR软件表+北京数据+细化政府干预+研究结果
+---
+
+# 研究目的及重要性
+
+# 计划表
+<style type="text/css">
+.tg  {border-collapse:collapse;border-spacing:0;}
+.tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}
+.tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}
+.tg .tg-73a0{font-size:12px;border-color:inherit;text-align:left;vertical-align:top}
+.tg .tg-i21v{font-size:12px;font-family:Arial, Helvetica, sans-serif !important;;border-color:inherit;text-align:left;vertical-align:top}
+</style>
+<table class="tg">
+  <tr>
+    <th class="tg-73a0" colspan="5">Team happy小组工作计划</th>
+  </tr>
+  <tr>
+    <td class="tg-i21v" colspan="5">1.小组创建及主题确定<br>（1）3月17号小组成立，确定了主题以及汇报时间。<br>（2）主题定为细化政府干预SIR模型疫情预测</td>
+  </tr>
+  <tr>
+    <td class="tg-73a0" colspan="5">2.确定讨论时间<br>（1）3月28号 进行小组第一次讨论，细化主题研究内容，明确分工，确定Topic Presentation的基本框架。<br>（2）4月2号 准备好Markdown文件<br>（3）4月24号 进行第二次讨论，考察个人工作进行情况，要求完成项目的一半。并讨论具体细节<br>（4）5月7号&nbsp;&nbsp;准备好第二天演讲所要展示的文件，并完成视频录制。</td>
+  </tr>
+  <tr>
+    <td class="tg-73a0" colspan="5">3.参考文献<br>《大数据驱动下的新冠肺炎疾控》--黄森忠团队<br>《An epidemiologial forecast model and software assessing interventions on COVID-19 epidemic in China》--宋学坤</td>
+  </tr>
+</table>
+# 研究数据
+
+本次研究数据使用狗熊会3月26日公布的[中国全部省份及重点城市疫情时序数据](https://mp.weixin.qq.com/s/w4t7htltf6XzZEgQrxVLiQ)中，北京市1月30日至3月36日的疫情数据。数据涵盖了确诊人数、治愈人数、死亡人数及境外输入数据。
+
+本文研究细化政府干预对于疫情的影响，包含境内外政府政策的影响。政策根据前者研究经验及相关参考文献数据化进入模型。政策信息包含国家政策、北京市政策及对外政策三方面；均来自官方网站。
+
+# 相关软件使用
+
+我们准备利用宋学坤教授的eSIR软件包，该软件包能够输出在流行病学模型下的MCMC估计、推断和预测，它使用每日更新的感染和排除的人数所占的比例作为输入数据。该R包在**GitHub lilywang1988/eSIR**上，隔离功能是预先定义的，在估计和预测步骤中将作为已知政策函数处理。该软件包为用户提供了各种可视化MCMC结果的图，包括估计的感染率和估计的移除概率，以及预测的转折点。输出中列出了各种汇总统计数据，包括传播率和排除率的后验均值估计值、转折点及其95%可信区间的预测值。此外，该包为用户提供了多个选项，用户可以保存整个MCMC结果，包括输出表和摘要图、用于MCMC质量控制的跟踪图和用于用户自己的摘要分析的完整MCMC图等。
+
+# 结果
+
+简单结果及预期结果预测
+
+
+
+
