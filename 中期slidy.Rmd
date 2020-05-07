@@ -96,7 +96,7 @@ class: inverse, middle, center
 ---
 ### 北京市感染趋势情况
 <div align=center>
-![](C:/Users/Administrator/Desktop/project-team-happy/figures/p1.png)
+![](figures/p1.png)
 ---
   
 ###北京市感染趋势情况
@@ -135,7 +135,7 @@ ggplot(d, aes(name, confirm)) +
   
 ###北京各区确诊人数曲线图
 <div align=center>
-![](C:/Users/Administrator/Desktop/project-team-happy/figures/p2.png)
+![](figures/p2.png)
 
 
 ---
