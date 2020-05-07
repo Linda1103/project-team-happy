@@ -21,13 +21,13 @@ output:
 ### 1.绪论
 
 
-### 2.数据来源及模型简介（少）
+### 2.描述统计
 
 
 ### 3.实证分析
 
 
-### 4.展望（进一步再加一个模型）
+### 4.问题与展望
 
 ---
 class: inverse, middle, center
@@ -94,48 +94,11 @@ class: inverse, middle, center
 ## 2. 描述性统计
 
 ---
-### 北京市感染趋势情况
-<div align=center>
-![](figures/p1.png)
----
   
-###北京市感染趋势情况
-  
-```{r,echo = F,message=FALSE}
-h <- read.table(file="confirm.csv",sep = ",",header = T)
-library(zoo)
-library(xts)
-hh <- xts(h$number,as.Date(h$time, format='%Y/%m/%d'))
-win.graph(width = 9.5,height = 5.5,pointsize = 15)
-p<-plot(hh,type='l',main='')
-p
-```
 
----
-  
-###北京各区感染情况
-```{r echo=F,message=FALSE}
-library(nCov2019)
-x <- get_nCov2019()
-library(forcats)
-library(ggplot2)
-d = x['北京',]
-d$confirm=as.numeric(d$confirm)
-d$name = fct_reorder(d$name, d$confirm)
 
-ggplot(d, aes(name, confirm)) + 
-  geom_col(fill='steelblue') + coord_flip() +
-  geom_text(aes(y = confirm+2, label=confirm), hjust=0) +
-  theme_minimal(base_size=14) + 
-  scale_y_continuous(expand=c(0,10)) +
-  xlab(NULL) + ylab(NULL)
-```
 
----
-  
-###北京各区确诊人数曲线图
-<div align=center>
-![](figures/p2.png)
+
 
 
 ---
@@ -157,13 +120,13 @@ class:middle, center
   随着时间的推移，各种形式的干预措施正在改变着传输速率，例如：(1)让居民都戴口罩和安全眼镜，并采取在家隔离的措施(2)基层检疫，如对于感染人员立即住院隔离治疗，封锁城市，对交通实施控制以及限制各种形式的社交活动等。此外，病毒本身也可能发生变异而演变，从而增加疾病诊断中出现假阴性的潜在几率导致一些病毒携带者并没有被隔离。因此，传播速度β会随着时间发生变化，基于这种情况对基本的SIR模型做了相应的拓展(改变易感者接触到感染者的概率)。
   
 ```{r,echo=FALSE}
-knitr::include_graphics("figures/1.png")
-
+knitr::include_graphics("figures/原理.png")
 ```
+
 
 ---
 
-### 模型介绍
+### 模型简介
 
 设t时刻, ${q^S}(t)$ 是易感染者在家隔离的概率, ${q^I}(t)$ 是感染者在医院的概率。新的模型中易感者与感染者相遇时的疾病传播率被修正为：
 
@@ -200,6 +163,65 @@ $$ \pi(t)=exp(-\lambda_0t) 或者 \pi(t)=exp\lbrace-(\lambda_0t)^v\rbrace $$
 本次用的 $\lambda_0=0.05$ 。
 
 ---
+### the basic state-space SIR model, pi(t)=1
+
+```{r,eval=FALSE}
+set.seed(20192020)
+library(eSIR)
+# cumulative number of infected
+NI_complete <- c(5,14,22,26,36,51,68,80,91,111,132,156,183,
+                212,228,253,274,297,315,326,337,342,352,366,                 372,375,380,381,387,393,395,396,399,399,399,                 400,400,410,410,411,413,414,414,417,418,422,                 426,428,428,429,435,435,436,415,415,415,415,                 415,415,415,415,415,415,416,416,416,416)
+RI_complete <- c(0,0,0,0,1,2,2,3,5,5,6,6,10,13,24,25,32,
+                34,36,39,46,51,59,71,82,101,109,118,126,149,
+                157,17,182,193,202,219,239,253,264,279,284,
+                290,296,302,305,306,311,316,323,328,334,342,
+                350,357,361,366,374,377,381,386,393,399,400,
+                400,400,400,402)
+N=21.54e6
+R <- RI_complete/N
+Y <- NI_complete/N- R #Jan20->Mar26
+### Step function of pi(t)
+res.nopi <- tvt.eSIR(Y, R, begin_str="01/20/2020",
+            death_in_R=0.035, T_fin=200,                                casename="Beijing_nopi", save_files=T,
+            M=5e2, nburnin = 2e2)
+res.nopi$plot_infection
+res.nopi$plot_removed    
+
+```
+---
+
+### 参数介绍
+
+Y：每日观察到的感染人群时间序列。
+
+R：每日观察到的移除人群比例的时间序列，包括死亡和康复。
+
+begin_str：起始日期。
+
+T-fin:从数据起始日期开始，分析研究的天数；默认为两百天，即T-fin=200。
+
+nadapt:MCMC中自适应的迭代次数，至少使用默认值1e4确保可以获得完全适应链。
+
+death_in_R:转移区内累计死亡平均数的数值，默认为北京市为0.035。
+
+---
+
+```{r,echo=FALSE}
+knitr::include_graphics("figures/infection3.png")
+```
+
+---
+```{r,echo=FALSE}
+knitr::include_graphics("figures/infection3+.png")
+```
+
+---
+
+```{r,echo=FALSE}
+knitr::include_graphics("figures/removed3.png")
+```
+
+---
 
 ### π0=(1,0.8,0.5,0.1)
 ```{r,eval=FALSE}
@@ -230,15 +252,19 @@ res.step$plot_removed
 res.step$spaghetti_plot
 res.step$dic_val
 ```
+
 ---
 
 ```{r,echo=FALSE}
 knitr::include_graphics("figures/infection1.png")
+```
+
+---
+```{r,echo=FALSE}
 knitr::include_graphics("figures/removed1.png")
 ```
 
 ---
-
 ### π0=(1,0.9,0.7,0.5)
 ```{r,eval=FALSE}
 set.seed(20192020)
@@ -272,40 +298,11 @@ res.step$spaghetti_plot
 
 ```{r,echo=FALSE}
 knitr::include_graphics("figures/infection2.png")
-knitr::include_graphics("figures/removed2.png")
 ```
 
 ---
-
-### the basic state-space SIR model, pi(t)=1
-```{r,eval=FALSE}
-set.seed(20192020)
-library(eSIR)
-# cumulative number of infected
-NI_complete <- c(5,14,22,26,36,51,68,80,91,111,132,156,183,
-                212,228,253,274,297,315,326,337,342,352,366,                 372,375,380,381,387,393,395,396,399,399,399,                 400,400,410,410,411,413,414,414,417,418,422,                 426,428,428,429,435,435,436,415,415,415,415,                 415,415,415,415,415,415,416,416,416,416)
-RI_complete <- c(0,0,0,0,1,2,2,3,5,5,6,6,10,13,24,25,32,
-                34,36,39,46,51,59,71,82,101,109,118,126,149,
-                157,17,182,193,202,219,239,253,264,279,284,
-                290,296,302,305,306,311,316,323,328,334,342,
-                350,357,361,366,374,377,381,386,393,399,400,
-                400,400,400,402)
-N=21.54e6
-R <- RI_complete/N
-Y <- NI_complete/N- R #Jan20->Mar26
-### Step function of pi(t)
-res.nopi <- tvt.eSIR(Y, R, begin_str="01/20/2020",
-            death_in_R=0.035, T_fin=200,                                casename="Beijing_nopi", save_files=T,
-            M=5e2, nburnin = 2e2)
-res.nopi$plot_infection
-res.nopi$plot_removed    
-
-```
----
-
 ```{r,echo=FALSE}
-knitr::include_graphics("figures/infection3.png")
-knitr::include_graphics("figures/removed3.png")
+knitr::include_graphics("figures/removed2.png")
 ```
 
 ---
@@ -339,12 +336,29 @@ res.nopi$plot_removed
 
 ```{r,echo=FALSE}
 knitr::include_graphics("figures/infection4.png")
+```
+
+---
+
+```{r,echo=FALSE}
 knitr::include_graphics("figures/removed4.png")
 ```
 
 ---
 class: inverse, middle, center
 
-## 4. 展望
+## 4. 问题与展望
 
 ---
+
+### 问题
+
+在模型分析中发现，该模型使用具有较强的时效性。SIR模型多用来预测疫情拐点，以及在本文中研究政策对于疫情的影响。选题之处，北京市疫情尚未出现拐点，预测拐点及研究政策就显得尤为重要。但就当前而言，北京市疫情早已得到有效控制，于3月13日出现拐点。此时研究政府干预与自然状态下疫情的发展变化情况，意义甚微。
+
+### 展望
+
+本次使用数据为1月20日至3月26日的数据，可多次改变起始时间及时间长度；探究以数据为导向的政策赋权，减少人为赋权影响。
+
+
+
+
