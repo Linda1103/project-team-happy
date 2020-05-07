@@ -94,11 +94,48 @@ class: inverse, middle, center
 ## 2. 描述性统计
 
 ---
+### 北京市感染趋势情况
+<div align=center>
+![](C:/Users/Administrator/Desktop/project-team-happy/figures/p1.png)
+---
   
+###北京市感染趋势情况
+  
+```{r,echo = F,message=FALSE}
+h <- read.table(file="confirm.csv",sep = ",",header = T)
+library(zoo)
+library(xts)
+hh <- xts(h$number,as.Date(h$time, format='%Y/%m/%d'))
+win.graph(width = 9.5,height = 5.5,pointsize = 15)
+p<-plot(hh,type='l',main='')
+p
+```
 
+---
+  
+###北京各区感染情况
+```{r echo=F,message=FALSE}
+library(nCov2019)
+x <- get_nCov2019()
+library(forcats)
+library(ggplot2)
+d = x['北京',]
+d$confirm=as.numeric(d$confirm)
+d$name = fct_reorder(d$name, d$confirm)
 
+ggplot(d, aes(name, confirm)) + 
+  geom_col(fill='steelblue') + coord_flip() +
+  geom_text(aes(y = confirm+2, label=confirm), hjust=0) +
+  theme_minimal(base_size=14) + 
+  scale_y_continuous(expand=c(0,10)) +
+  xlab(NULL) + ylab(NULL)
+```
 
-
+---
+  
+###北京各区确诊人数曲线图
+<div align=center>
+![](C:/Users/Administrator/Desktop/project-team-happy/figures/p2.png)
 
 
 ---
