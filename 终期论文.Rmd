@@ -1,0 +1,59 @@
+---
+title: "细化政府干预的北京疫情预测"
+author: "武碧璇 张妍 祁凡 屈亚然 丁晨东"
+date: '2020-05-28'
+output:
+  pdf_document:
+    includes:
+      in_header: preamble.tex
+    number_sections: yes
+  html_document:
+    df_print: paged
+fontsize: 12pt
+documentclass: article
+papersize: a5
+abstract: |
+ 摘要书写
+---
+## 一、引言
+
+
+研究背景+ 一段结合我们研究的过渡段
+
+
+
+##二、模型介绍
+
+###2.1各种传染病模型简述
+
+###2.2SIR模型使用
+
+为什么选择使用SIR模型
+
+## 三、模型分析
+
+###3.1数据来源
+
+###3.2描述统计分析
+
+###3.3第一个SIR模型分析
+
+###3.4第二个模型分析
+
+
+## 四、结论与展望
+
+###4.1结论
+
+描述统计和模型分析的结论
+
+###4.2展望
+
+未来可写的方向：1/宋老师推荐的方向 2/探究政策干预较好的赋权方法
+
+
+
+
+
+
+
