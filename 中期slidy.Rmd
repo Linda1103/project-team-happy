@@ -2,7 +2,7 @@
 title: "细化政府干预的北京疫情预测"
 subtitle: "中期报告"
 author: "武碧璇 张妍 祁凡 屈亚然 丁晨东"
-date: "2020年04月05日"
+date: "2020年05月08日"
 output:
   xaringan::moon_reader:
     css: [default, zh-CN.css]
