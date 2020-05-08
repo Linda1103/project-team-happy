@@ -94,6 +94,49 @@ class: inverse, middle, center
 ## 2. 描述性统计
 
 ---
+### 北京市感染趋势情况
+<div align=center>
+![](figures/p1.png)
+---
+  
+###北京市感染趋势情况
+  
+```{r,echo = F,message=FALSE}
+h <- read.table(file="confirm.csv",sep = ",",header = T)
+library(zoo)
+library(xts)
+hh <- xts(h$number,as.Date(h$time, format='%Y/%m/%d'))
+win.graph(width = 9.5,height = 5.5,pointsize = 15)
+p<-plot(hh,type='l',main='')
+p
+```
+
+---
+  
+###北京各区感染情况
+```{r echo=F,message=FALSE}
+library(nCov2019)
+x <- get_nCov2019()
+library(forcats)
+library(ggplot2)
+d = x['北京',]
+d$confirm=as.numeric(d$confirm)
+d$name = fct_reorder(d$name, d$confirm)
+
+ggplot(d, aes(name, confirm)) + 
+  geom_col(fill='steelblue') + coord_flip() +
+  geom_text(aes(y = confirm+2, label=confirm), hjust=0) +
+  theme_minimal(base_size=14) + 
+  scale_y_continuous(expand=c(0,10)) +
+  xlab(NULL) + ylab(NULL)
+```
+
+---
+  
+###北京各区确诊人数曲线图
+<div align=center>
+![](figures/p2.png)
+
   
 
 
@@ -120,7 +163,7 @@ class:middle, center
   随着时间的推移，各种形式的干预措施正在改变着传输速率，例如：(1)让居民都戴口罩和安全眼镜，并采取在家隔离的措施(2)基层检疫，如对于感染人员立即住院隔离治疗，封锁城市，对交通实施控制以及限制各种形式的社交活动等。此外，病毒本身也可能发生变异而演变，从而增加疾病诊断中出现假阴性的潜在几率导致一些病毒携带者并没有被隔离。因此，传播速度β会随着时间发生变化，基于这种情况对基本的SIR模型做了相应的拓展(改变易感者接触到感染者的概率)。
   
 ```{r,echo=FALSE}
-knitr::include_graphics("figures/原理.png")
+knitr::include_graphics("figures/1.png")
 ```
 
 
