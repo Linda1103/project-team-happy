@@ -96,8 +96,8 @@ class: inverse, middle, center
 
 ---
 ###nCov2019以及Chinamap的安装
-
-
+  
+  
 https://github.com/GuangchuangYu/nCov2019
 
 
@@ -117,6 +117,7 @@ devtools::install_local("chinamap-master.zip")
 ```
 ---
 ###北京市感染趋势情况
+
 ```{r,echo = F,message=FALSE}
 h <- read.table(file="confirm.csv",sep = ",",header = T)
 library(zoo)
@@ -126,11 +127,12 @@ win.graph(width = 9.5,height = 5.5,pointsize = 15)
 p<-plot(hh,type='l',main='')
 p
 ```
-&ensp; &ensp;&ensp;&ensp;<font size=6>自1月20日起，北京市陆续出现确诊感染病例，疫情在1月24日至2月12日达到了爆发期。2月12日后，感染人数增速放缓，北京市疫情出现拐点。
 
 ---
+
 ##北京市确诊人数和治愈人数时序图
-```{r echo=F,message=FALSE}
+
+```{r echo=F,message=FALSE,eval=FALSE}
 h <- read.table(file="Beijingdata.csv",sep = ",",header = T)
 library(zoo)
 library(xts)
@@ -141,10 +143,17 @@ win.graph(width = 9.5,height = 5.5,pointsize = 15)
 plot(qz,type='l',main ='',col="blue")
 lines(cy,type='l',main ='',col="red")
 ```
+
+
+```{r,echo=FALSE}
+knitr::include_graphics("figures/p3.png")
+```
+
 ---
 
 ##确诊人数与出院人数
-```{r echo=F,message=FALSE}
+
+```{r echo=F,message=FALSE,eval=FALSE}
 ch <- read.table(file="Beijingdata.csv",sep = ",",header = T)
 library(zoo)
 library(xts)
@@ -155,10 +164,14 @@ win.graph(width = 9.5,height = 5.5,pointsize = 15)
 plot(qz,type='l',main ='',col="blue")
 lines(cy,type='l',main ='',col="red")
 ```
-&ensp; &ensp;&ensp;&ensp;<font size=6>自2月4日起，北京市新增确诊人数逐渐减少。2月3日起，新增出院人数逐渐增加；2月24日起，北京本地疫情基本得到控制。
+
+```{r,echo=FALSE}
+knitr::include_graphics("figures/p4.png")
+```
 
 ---
 ###北京各区感染情况
+
 ```{r echo=F,message=FALSE}
 library(nCov2019)
 x <- get_nCov2019()
@@ -179,6 +192,7 @@ ggplot(d, aes(name, confirm)) +
 ---
   
 ###北京各区确诊人数曲线图
+
 <div align=center>
 ```{r,echo=FALSE}
 knitr::include_graphics("figures/p2.png")
