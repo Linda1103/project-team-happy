@@ -45,14 +45,35 @@ knitr::include_graphics("figures/infection1.png")
 ---
 class: inverse, middle, center
 
-## 2.模型优化
+## 2.划分隔离区的拓展的SIR模型
 
 ---
-祁凡同学加入前后两种模型对比
-&emsp;&emsp;
+&emsp;&emsp;上一个模型是在原有SIR模型的基础上引入$\pi(t)$修正因子，修正了易感染者接触感染者的概率，得到了新的SIR模型。本次展示的模型是另一种拓展的SIR模型，它是在原有模型的基础上引入隔离区，如下图所示：
+
+![](figures/3.png)
+
+&emsp;&emsp;该模型引入了Quarantine(隔离区)，通俗的认为隔离区内的人是不会与感染者直接接触的人。 $\phi(t)$ 用于表示易感者愿意在t时刻在家自我隔离的概率,同上面所讲的一样，它也会随着时间而变换。因此，新的扩展SIR模型如下：
+
+ $$\frac{d{\theta_t}^I}{dt}=\beta{\theta_t}^S {\theta_t}^I -\gamma {\theta_t}^I, \frac{d{\theta_t}^S }{dt} =-\beta {\theta_t}^S {\theta_t}^I -\phi(t){\theta_t}^S$$
+
+ $$\frac{d{\theta_t}^Q}{dt}=\phi(t){\theta_t}^S,\frac{d{\theta_t}^R }{dt} = \gamma{\theta_t}^I$$
+
+
+以上公式中 ${\theta_t}^S+{\theta_t}^Q+{\theta_t}^I+{\theta_t}^R=1$ 
+
+---
+class:middle, center
+假定 $\phi(t)$ 是狄拉克函数，并根据实际情况指定如下函数来反映宏观干预政策的影响:
+
+![](figures/4.png)
+
+令 $\phi_{0} =(\phi_{01},\phi_{02},\phi_{03})$,本文考虑了三种情况：不加干预的情况( $\phi_{0}=(0,0,0)$ )，以及有多个跳跃点( $\phi_{0}=(0.1,0.4,0.3)$)和仅有一个跳跃点( $\phi_{0}=(0,0.9,0)$ )的情况。
+
+![](figures/5.png)
+
 ---
 
-class: inverse, middle, center
+
 
 ## 3.模型结果
 
