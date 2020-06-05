@@ -107,7 +107,6 @@ class: inverse, middle, center
 ```{r,echo=FALSE}
 knitr::include_graphics("figures/p1.png")
 ```
-
 ---
 
 ### 北京市感染趋势情况
@@ -115,27 +114,30 @@ knitr::include_graphics("figures/p1.png")
 ```{r,echo=FALSE}
 knitr::include_graphics("figures/p2.png")
 ```
---- 
+ 
+---
 
 ### 北京各区确诊人数曲线图
 
 ```{r,echo=FALSE}
 knitr::include_graphics("figures/p3.png")
 ```
---- 
+
+---
 
 ### 北京市确诊人数和治愈人数时序图
 
 ```{r,echo=FALSE}
 knitr::include_graphics("figures/p4.png")
 ```
----  
 
+---
 ### 北京市确诊人数与出院人数时序图
 
 ```{r,echo=FALSE}
 knitr::include_graphics("figures/p5.png")
 ```
+
 ---
 class: inverse, middle, center
 
@@ -251,19 +253,19 @@ res.q$plot_infection
    
 ```
 
-------
+---
 
 ```{r,echo=FALSE}
 knitr::include_graphics("figures/q11.png")
 ```
 
-------
+---
 
 ```{r,echo=FALSE}
 knitr::include_graphics("figures/q12.png")
 ```
 
-------
+---
 
  $\phi_{0}=(0,0.9,0)$
  
@@ -295,25 +297,22 @@ res.q$plot_infection
    
 ```
 
-------
+---
 
 ```{r,echo=FALSE}
 knitr::include_graphics("figures/q21.png")
 ```
 
-------
+---
 
 ```{r,echo=FALSE}
 knitr::include_graphics("figures/q22.png")
 ```
 
-------
+---
 class: inverse, middle, center
 
 ## 5. 结论
-
----
-
 
 ---
 
