@@ -12,25 +12,23 @@ output:
 fontsize: 12pt
 documentclass: article
 papersize: a5
-abstract: |
- 摘要书写
 ---
-## 一、引言
+## 一、摘要
+
+
+
+## 二、引言
 
 
 研究背景+ 一段结合我们研究的过渡段
 
 
 
-##二、模型介绍
+##三、模型介绍
 
-###2.1各种传染病模型简述
+  
 
-###2.2SIR模型使用
-
-为什么选择使用SIR模型
-
-## 三、模型分析
+## 四、模型分析
 
 ###3.1数据来源
 
@@ -96,7 +94,7 @@ knitr::include_graphics("figures/infection5.png")
 ###3.4第二个模型分析
 
 
-## 四、结论与展望
+## 五、结论与展望
 
 ###4.1结论
 
@@ -106,6 +104,8 @@ knitr::include_graphics("figures/infection5.png")
 
 未来可写的方向：1/宋老师推荐的方向 2/探究政策干预较好的赋权方法
 
+
+## 六、参考文献
 
 
 
