@@ -108,7 +108,21 @@ knitr::include_graphics("figures/infection5.png")
 ## 六、参考文献
 
 
+[1]An epidemiological forecast model and software assessing interventions on COVID-19 epidemic in China.
 
+[2]Canrong Tian,Qunying Zhang,Lai Zhang. Global stability in a networked SIR epidemic model[J]. Applied Mathematics Letters,2020,107.
 
+[3]COVID-19/SARS-CoV-2 News from Preprints; An Age and Space Structured SIR Model Describing the Covid-19 Pandemic[J]. Medical Letter on the CDC & FDA,2020.
 
+[4]Pegah Taghiei Karaji,Nemat Nyamoradi. Analysis of a fractional SIR model with General incidence function[J]. Applied Mathematics Letters,2020,108.
+
+[5]李贻芬.传染病传播模型的探究及优化运用[J].通化师范学院学报,2019,40(08):26-31.
+
+[6]种大双,孙绍荣.基于传染病模型的重大突发事件舆情传播与控制[J].情报理论与实践,2018,41(05):104-109.
+
+[7]朱仁杰,唐仕浩,刘彤彤,等.基于改进SIR模型的新型冠状病毒肺炎疫情预测及防控对疫情发展的影响.
+
+[8]喻孜,张贵清等. 基于时变参数-SIR 模型的2019-nCoV疫情评估和预测
+
+[9]许云霞,雷学红.具有Logistic增长的SIRS传染病模型的稳定性及最优控制分析[J].湖北民族大学学报(自然科学版),2020,38(02):200-205.
 
