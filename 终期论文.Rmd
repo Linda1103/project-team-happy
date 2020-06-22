@@ -52,9 +52,54 @@ papersize: a5
 
 ### 4.1数据来源
 
+&emsp;&emsp;本次研究数据使用狗熊会3月26日公布的[中国全部省份及重点城市疫情时序数据](https://mp.weixin.qq.com/s/w4t7htltf6XzZEgQrxVLiQ)中，北京市1月20日至3月36日的疫情数据。数据涵盖了确诊人数、治愈人数、死亡人数及境外输入数据。 
+   本文研究细化政府干预对于疫情的影响，包含境内外政府政策的影响。政策根据前者研究经验及相关参考文献数据化进入模型。政策信息包含国家政策、北京市政策及对外政策三方面；均来自官方网站。 
+
 ### 4.2描述统计分析
 
 &emsp;&emsp;本文在分析疫情发展变化的过程中，定义以下三个拐点为疫情转折点。第一拐点，感染人数增长率开始下降，即感染人数二阶导数为零。第二拐点，感染人数少于移除人数，即感染人数一阶导数为零。第三拐点，感染人数为零。
+
+#### 4.2.1北京市确诊人数和治愈人数时序图
+
+&emsp;&emsp;下面第一个图是2020年1月20日-2020年3月26日北京新增病例数的时间趋势图，从图中可以看出自1月20日以来，北京疫情于2月3日出现第一拐点，感染人数增长率开始下降，2月中下旬出现第二拐点，感染人数一阶导数为零。
+
+&emsp;&emsp;第二图中红色曲线表示北京市治愈人数时序图，从图中可以看出随着疫情的发展，治愈人数慢慢趋向于确诊人数，治疗新冠肺炎的经验也越来越成熟。截止到3月26日，治愈率达到了94.7%。
+
+```{r fig.align="center",eval=T,echo=FALSE,warning=FALSE,error=FALSE,message=FALSE,fig.width=6,fig.height=2.5}
+h <- read.table(file="Beijingdata.csv",sep = ",",header = T)
+library(zoo)
+library(xts)
+options(warn=-1)
+qz<-xts(h$confirmed, as.Date(h$date, format='%m/%d'))
+cy<-xts(h$cure, as.Date(h$date, format='%m/%d'))
+win.graph(width = 9.5,height = 5.5,pointsize = 15)
+plot(qz,type='l',main ='',col="blue")
+lines(cy,type='l',main ='',col="red")
+```
+
+#### 4.2.2北京市每日新增确诊人数与出院人数
+
+&emsp;&emsp;图中蓝色的折线表示北京市每日新增确诊人数，通过这个图，我们可以更直观的看出第一拐点和第二拐点。红色的曲线表示每日新增出院人数。从图中我们可以看出随着疫情的发展与控制，治愈人数随着确诊人数的减少而减少，最终趋于平稳。
+
+```{r fig.align="center",eval=T,echo=FALSE,warning=FALSE,error=FALSE,message=FALSE,fig.width=6,fig.height=2.5}
+ch <- read.table(file="Beijingdata.csv",sep = ",",header = T)
+library(zoo)
+library(xts)
+options(warn=-1)
+qz<-xts(ch$xzqz, as.Date(h$date, format='%m/%d'))
+cy<-xts(ch$xzcy, as.Date(h$date, format='%m/%d'))
+win.graph(width = 9.5,height = 5.5,pointsize = 15)
+plot(qz,type='l',main ='',col="blue")
+lines(cy,type='l',main ='',col="red")
+```
+
+#### 4.2.3北京市各区确诊人数时序图
+
+&emsp;&emsp;下图反映的是1月20日至5月初的北京各区累计确诊人数时序图，从图中可以看出1月20日至3月26日，北京各区的疫情已经基本得到控制，朝阳区、海淀区和西城区属于疫情相对较为严重的区域，在政策层面应当加强对于各区的管控和检测。从三月初开始，境外人员确诊人数迅速上升，北京市政府应当提高警惕性，预防疫情二次爆发，加强对于境外人员的管控和监测。
+
+<div align=center>
+<img src="figures/p3.png" width = "750" height = "400" alt="北京市各区确诊人数时序图" align=center />
+</div>
 
 ### 4.3细化政府干预的SIR模型
 
