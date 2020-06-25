@@ -67,7 +67,7 @@ papersize: a5
 
 &emsp;&emsp;第二图中红色曲线表示北京市治愈人数时序图，从图中可以看出随着疫情的发展，治愈人数慢慢趋向于确诊人数，治疗新冠肺炎的经验也越来越成熟。截止到3月26日，治愈率达到了94.7%。
 
-#```{r fig.align="center",eval=T,echo=FALSE,warning=FALSE,error=FALSE,message=FALSE,fig.width=6,fig.height=2.5}
+```{r fig.align="center",eval=T,echo=FALSE,warning=FALSE,error=FALSE,message=FALSE,fig.width=6,fig.height=2.5}
 h <- read.table(file="Beijingdata.csv",sep = ",",header = T)
 library(zoo)
 library(xts)
@@ -77,13 +77,13 @@ cy<-xts(h$cure, as.Date(h$date, format='%m/%d'))
 win.graph(width = 9.5,height = 5.5,pointsize = 15)
 plot(qz,type='l',main ='',col="blue")
 lines(cy,type='l',main ='',col="red")
-#```
+```
 
 ##### 4.2.2北京市每日新增确诊人数与出院人数
 
 &emsp;&emsp;图中蓝色的折线表示北京市每日新增确诊人数，通过这个图，我们可以更直观的看出第一拐点和第二拐点。红色的曲线表示每日新增出院人数。从图中我们可以看出随着疫情的发展与控制，治愈人数随着确诊人数的减少而减少，最终趋于平稳。
 
-#```{r fig.align="center",eval=T,echo=FALSE,warning=FALSE,error=FALSE,message=FALSE,fig.width=6,fig.height=2.5}
+```{r fig.align="center",eval=T,echo=FALSE,warning=FALSE,error=FALSE,message=FALSE,fig.width=6,fig.height=2.5}
 ch <- read.table(file="Beijingdata.csv",sep = ",",header = T)
 library(zoo)
 library(xts)
@@ -93,7 +93,7 @@ cy<-xts(ch$xzcy, as.Date(h$date, format='%m/%d'))
 win.graph(width = 9.5,height = 5.5,pointsize = 15)
 plot(qz,type='l',main ='',col="blue")
 lines(cy,type='l',main ='',col="red")
-#```
+```
 
 ##### 4.2.3北京市各区确诊人数时序图
 
