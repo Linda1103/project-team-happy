@@ -179,7 +179,7 @@ res.step$spaghetti_plot
 res.step$dic_val
 ```
 
-```{r,echo=F, fig.height=4, fig.width=4}
+```{r,echo=F}
 knitr::include_graphics("figures/i1.pdf")
 ```
 
