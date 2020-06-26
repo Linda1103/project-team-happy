@@ -5,7 +5,7 @@ date: '2020-05-28'
 documentclass: ctexart
 geometry: "left=2.5cm,right=2.5cm,top=2.5cm,bottom=2.5cm" 
 fontsize: 12pt
-pagestyle: empty 
+pagestyle: empty
 output:
   rticles::ctex:
 classoption: "hyperref,"
@@ -28,19 +28,11 @@ classoption: "hyperref,"
 
 SIR模型中，人群由三部分组成：易感者（Susceptible），用S表示；感染者（Infectious），用I表示；移除者（Removed）,表示出院或死亡人数，用R表示。$S(t) + I(t) + R(t) =N$（N为人群总人数）。SIR模型假设这三种人群在病毒发展规律下以一定概率向其他状态转移形成“易感态-感染态-移出态”的动力学模型，可实现对病毒的传染趋势在一定精度内的评估和预测。
 
-## 2.2 细化政府干预的SIR模型
+## 2.2 修正疾病传播率的SIR模型
 
-由于中国政府实施了隔离政策，居民个人也进行了自我隔离，包含恒定传播率和移除率的基本流行病学模型并不适用于中国的实际情况。随着时间的推移，各种形式的干预措施正在改变着传输速率，例如：(1)居都戴口罩和护目镜，并采取在家隔离的措施(2)基层检疫，如对于感染人员立即住院隔离治疗，封锁城市，对交通实施控制以及限制各种形式的社交活动等。此外，病毒本身也可能发生变异而演变，从而增加疾病诊断中出现假阴性的潜在几率导致一些病毒携带者并没有被隔离。因此，传播速度β会随着时间发生变化，基于这种情况对基本的SIR模型做了相应的拓展(改变易感者接触到感染者的概率)，如下图所示。
-
-```{r,echo=FALSE}
-knitr::include_graphics("figures/1.pdf")
-```
+由于中国政府实施了隔离政策，居民个人也进行了自我隔离，包含恒定传播率和移除率的基本流行病学模型并不适用于中国的实际情况。随着时间的推移，各种形式的干预措施正在改变着传输速率，例如：(1)居都戴口罩和护目镜，并采取在家隔离的措施(2)基层检疫，如对于感染人员立即住院隔离治疗，封锁城市，对交通实施控制以及限制各种形式的社交活动等。此外，病毒本身也可能发生变异而演变，从而增加疾病诊断中出现假阴性的潜在几率导致一些病毒携带者并没有被隔离。因此，传播速度β会随着时间发生变化，基于这种情况对基本的SIR模型做了相应的拓展(加入因子$\pi(t)$改变易感者接触到感染者的概率)。
 
 ## 2.3 划分隔离区的拓展的SIR模型
-
-```{r,echo=FALSE}
-knitr::include_graphics("figures/3.pdf")
-```
 
 该模型引入了Quarantine(隔离区)，通俗的认为隔离区内的人是不会与感染者直接接触的人。$\phi(t)$用于表示易感者愿意在t时刻在家自我隔离的概率,它也会随着时间而变换。因此，新的扩展SIR模型如下：  
 
@@ -69,14 +61,14 @@ $$\frac{d{\theta_t}^I}{dt}=\beta{\theta_t}^S {\theta_t}^I -\gamma {\theta_t}^I, 
 
 第二图中红色曲线表示北京市治愈人数时序图，从图中可以看出随着疫情的发展，治愈人数慢慢趋向于确诊人数，治疗新冠肺炎的经验也越来越成熟。截止到3月26日，治愈率达到了94.7%。
 
-```{r fig.align="center",eval=T,echo=FALSE,warning=FALSE,error=FALSE,message=FALSE,fig.width=6,fig.height=2.5}
+```{r fig.align="center",eval=T,echo=FALSE,warning=FALSE,error=FALSE,message=FALSE,fig.width=5,fig.height=2}
 h <- read.table(file="Beijingdata.csv",sep = ",",header = T)
 library(zoo)
 library(xts)
 options(warn=-1)
 qz<-xts(h$confirmed, as.Date(h$date, format='%m/%d'))
 cy<-xts(h$cure, as.Date(h$date, format='%m/%d'))
-win.graph(width = 9.5,height = 5.5,pointsize = 15)
+win.graph(width = 9,height = 5,pointsize = 13)
 plot(qz,type='l',main ='',col="blue")
 lines(cy,type='l',main ='',col="red")
 ```
@@ -85,14 +77,14 @@ lines(cy,type='l',main ='',col="red")
 
 图中蓝色的折线表示北京市每日新增确诊人数，通过这个图，我们可以更直观的看出第一拐点和第二拐点。红色的曲线表示每日新增出院人数。从图中我们可以看出随着疫情的发展与控制，治愈人数随着确诊人数的减少而减少，最终趋于平稳。
 
-```{r fig.align="center",eval=T,echo=FALSE,warning=FALSE,error=FALSE,message=FALSE,fig.width=6,fig.height=2.5}
+```{r fig.align="center",eval=T,echo=FALSE,warning=FALSE,error=FALSE,message=FALSE,fig.width=5,fig.height=2}
 ch <- read.table(file="Beijingdata.csv",sep = ",",header = T)
 library(zoo)
 library(xts)
 options(warn=-1)
 qz<-xts(ch$xzqz, as.Date(h$date, format='%m/%d'))
 cy<-xts(ch$xzcy, as.Date(h$date, format='%m/%d'))
-win.graph(width = 9.5,height = 5.5,pointsize = 15)
+win.graph(width = 9,height = 5,pointsize = 13)
 plot(qz,type='l',main ='',col="blue")
 lines(cy,type='l',main ='',col="red")
 ```
@@ -105,7 +97,7 @@ lines(cy,type='l',main ='',col="red")
 knitr::include_graphics("figures/p3.pdf")
 ```
 
-## 3.3 细化政府干预的SIR模型
+## 3.3 修正疾病传播率的SIR模型
 
 此模型中疾病传播率的修正因子$\pi(t)$是根据地区所采取的隔离措施而特别给定的，本文北京市具体政策情况如下图所示。
 
@@ -146,7 +138,7 @@ res.nopi$plot_removed
 
 ```
 
-```{r,echo=FALSE}
+```{r,echo=FALSE, fig.height=4, fig.width=4}
 knitr::include_graphics("figures/i3.pdf")
 ```
 
@@ -187,13 +179,13 @@ res.step$spaghetti_plot
 res.step$dic_val
 ```
 
-```{r,echo=FALSE}
+```{r,echo=F, fig.height=4, fig.width=4}
 knitr::include_graphics("figures/i1.pdf")
 ```
 
 上图中，黑点为原始数据；对原始连续化处理进行进一步预测。在实际数据中，第一拐点为2月4日，第二拐点为2月12日。而在本次赋权分析中，第一拐点为1月31日，第二拐点与实际情况吻合。当感染人数曲线与y轴相切时；为第三拐点，疫情基本结束。在上图的预测部分，感染人数比例持续下降，直至为零；这与当前北京市除输入型病例的疫情情况较为吻合。该赋权方法，较为有效地体现了北京市不同政策力度情况。
 
-当$\pi_{t}=(1,0.9,0.7,0.5)$时，疫情预测情况如下：
+当$\pi_{t}=(1,0.9,0.7,0.5)$时，预测情况表明疫情会在5月中后旬再次爆发；与当前实际情况不符。该赋权没有有效体现北京市政策对疫情的干预情况。
 
 ```{r,eval=FALSE,echo=FALSE}
 set.seed(20192020)
@@ -228,14 +220,7 @@ res.step$spaghetti_plot
 
 ```
 
-```{r,echo=FALSE}
-knitr::include_graphics("figures/i2.pdf")
-```
-
-上图中，按照该赋权方法，疫情会在5月中后旬再次爆发；与当前实际情况不符。该赋权没有有效体现北京市政策对疫情的干预情况。
-
-
-当$\pi(t)=exp(-0.05t)$时，疫情预测情况如下：
+当$\pi(t)=exp(-0.05t)$时，疫情预测情况如下：第一拐点为2月1日，第二拐点为2月9日；与实际拐点日期存在差异，但差异不大。第三拐点也在3月底出现，与实际情况较为符合。感染人数比例保持总体下降趋势，但有一定向上增长的波动。该波动与实际情况存在较大差异，该赋权方法，体现了北京市不同政策力度情况，但对政策力度的界定不够准确。
 
 ```{r,eval=FALSE,echo=FALSE}
 set.seed(20192020)
@@ -265,12 +250,6 @@ res.nopi$plot_infection
 res.nopi$plot_removed    
 
 ```
-
-```{r,echo=FALSE}
-knitr::include_graphics("figures/i7.pdf")
-```
-
-在本次赋权分析中，第一拐点为2月1日，第二拐点为2月9日；与实际拐点日期存在差异，但差异不大。第三拐点也在3月底出现，与实际情况较为符合。在上图的预测部分，感染人数比例保持总体下降趋势，但有一定向上增长的波动。该波动与实际情况存在较大差异，该赋权方法，体现了北京市不同政策力度情况，但对政策力度的界定不够准确。
 
 通过比较$\pi(t)$不同取值，对北京疫情情况的预测；得出$\pi_{t}=(1,0.8,0.5,0.1)$可以较好体现政策干预力度。1月24日启动一级响应机制，实施交通管制可以降低20%的疾病传播率；2月1日进一步强化隔离政策，疾病传播率较原来相比降低了50%左右。3月17日，在隔离政策的基础上，加强医疗服务；使得疾病传播率大幅度下降，仅为自然状态下疾病传播率的10%左右。
 
@@ -313,13 +292,13 @@ res.q$plot_infection
    
 ```
 
-```{r,echo=FALSE}
+```{r,echo=FALSE, fig.height=4, fig.width=4}
 knitr::include_graphics("figures/q11.pdf")
 ```
 
 从上图可以看出，在本次赋权分析中，第一拐点为1月31日，第二拐点为2月13日，这与实际情况吻合。三月底为第三拐点，疫情基本结束。在上图的预测部分，观察绿色曲线，感染人数比例在6月会小规模二次爆发，这与当前北京市当前疫情情况较为吻合。
 
-当$\phi_{0}=(0,0.9,0)$时，疫情预测情况如下：
+当$\phi_{0}=(0,0.9,0)$时，拐点预测与上面模型基本没有区别：第一拐点为1月30日，第二拐点为2月13，4月5日左右为第三拐点，表示疫情基本结束。感染人数比例保持总体下降趋势，但有一定向上增长的波动。
 
 ```{r,eval=FALSE,echo=FALSE}
 set.seed(20192020)
@@ -347,12 +326,6 @@ res.q <- qh.eSIR(Y, R, begin_str="01/20/2020",
 res.q$plot_infection
    
 ```
-
-```{r,echo=FALSE}
-knitr::include_graphics("figures/q21.pdf")
-```
-
-从上图可以看出，在本次赋权分析中，第一拐点为1月30日，第二拐点为2月13日，这与上面模型基本没有区别。4月5日左右为第三拐点，表示疫情基本结束。感染人数比例保持总体下降趋势，但有一定向上增长的波动。
 
 # 4 结论与展望
 
